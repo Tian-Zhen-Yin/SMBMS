@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ksd.smbms.user.mapper.UserMapper">
+	<resultMap type="User" id="UserMap">
+	<result property="id" column="id"/>
+	<result property="userCode" column="userCode"/>
+	<result property="userName" column="userName"/>
+	<result property="userPassword" column="userPassword"/>
+	<result property="gender" column="gender"/>
+	<result property="birthday" column="birthday"/>
+	<result property="phone" column="phone"/>
+	<result property="address" column="address"/>
+	<result property="userRole" column="userRole"/>
+	<result property="createdBy" column="createdBy"/>
+	<result property="creationDate" column="creationDate"/>
+	</resultMap>
+		
+		<!-- sql片段 -->
+		<sql id="userlist">
+			SELECT * FROM `smbms_user`
+		</sql>
+		<!-- sql片段 -->
+		<sql id="userrole">
+			SELECT * FROM `smbms_role`
+		</sql>
+		<select id="login" resultType="User">
+			<include refid="userlist"></include>
+			 WHERE userCode=#{0} AND userPassword=#{1}
+		</select>
+		
+		<!-- 通过条件查询-用户表记录数 -->
+		<select id="getUserCount" resultType="int">
+			select count(1) as count from smbms_user u
+			inner join smbms_role r  on u.userRole = r.id
+			<trim prefix="where" prefixOverrides="and">
+				<if test="userName != null &amp;&amp; userName!=''">and u.userName like concat('%',#{userName},'%')</if> 
+				<if test="userRole != null and userRole!=''">and u.userRole = #{userRole}</if> 
+			</trim>
+		</select>
+		
+		
+		<!-- 查询quan'bu -->
+		<select id="findAll" resultType="User">
+			select u.*,r.roleName  from smbms_user u
+			inner join smbms_role r on u.userRole = r.id
+			<where>
+				<if test="userName!=null &amp;&amp; userName.length()!=0">and userName like concat('%',#{userName},'%')</if>
+				<if test="userRole!=0">and userRole = #{userRole}</if>
+			</where>
+		 		limit #{currentPageNo},#{pageSize}
+		</select>
+
+		
+		<!-- 增加用户 -->
+		<insert id="addUser" parameterType="User">
+		INSERT INTO `smbms_user` VALUE(NULL,#{userCode},#{userName},
+			#{userPassword},#{gender},#{birthday},#{phone},
+			#{address},#{userRole},#{createdBy},#{creationDate},
+			NULL,NULL)
+			
+		</insert>
+		<!-- 删除用户 -->
+		<delete id="deleteUser">
+			DELETE FROM`smbms_user` WHERE id=#{0}
+		</delete>
+		
+		<!-- 验证userCode -->
+		<select id="checkName" parameterType="string" 
+	 resultType="String">
+			SELECT userCode FROM `smbms_user` WHERE userCode=#{0}
+		</select>
+		
+		<!--  -->
+		<select id="findById" parameterType="int" resultType="User">
+			SELECT u.*,r.`roleName` FROM smbms_user u,
+			smbms_role r WHERE u.id=#{0} AND u.`userRole`=r.`id`;
+		</select>
+		
+		<update id="modifyUser" parameterType="User" >  
+		UPDATE smbms_user
+		<set>
+			<if test="userName!=null &amp;&amp; userName.length()!=0">userName=#{userName},</if>
+			<if test="gender!=null and gender!=''">gender=#{gender},</if>
+			<if test="birthday!=null &amp;&amp; birthday!=''">birthday=#{birthday},</if>
+			<if test="phone!=null &amp;&amp; phone!=''">phone=#{phone},</if>
+			<if test="address!=null &amp;&amp;address!=''">address=#{address},</if>
+			<if test="userRole!=null and userRole!=''">userRole=#{userRole},</if>
+			<if test="modifyBy!=null &amp;&amp;modifyBy!=''">modifyBy=#{modifyBy},</if>
+			<if test="modifyDate!=null &amp;&amp;modifyDate!=''">modifyDate=#{modifyDate},</if>
+		</set>
+		WHERE id=#{id}
+		</update>
+		
+		
+
+	
+	<select id="getUserById" parameterType="int" resultType="User">
+		select u.*,r.roleName as userRoleName from smbms_user u,smbms_role r 
+		 where u.id=#{uid } and u.userRole = r.id
+	</select>
+	<update id="updatePwd" parameterType="User">
+		UPDATE `smbms_user` SET `userPassword`=#{pwd} WHERE id=#{id}
+	</update>
+</mapper>
+
+	
+

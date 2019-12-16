@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+	http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+	">
+	<!--使用注解实现:控制反转和依赖注入  -->
+	<!--开启注解扫描  -->
+	<context:component-scan base-package="ksd.smbms.user"></context:component-scan>
+	<!--开启aop自动代理  -->
+	<aop:aspectj-autoproxy/>
+	<context:property-placeholder location="classpath:database.properties"/>
+	<!--配置数据源  -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${mysql.driver}"></property>
+  		<property name="url" value="${mysql.url}"></property>
+  		<property name="username" value="${mysql.username}"></property>
+  		<property name="password" value="${mysql.password}"></property>
+	</bean>
+	<!--配置SqlSessionFactoryBean  -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!--引入数据源信息  -->
+		<property name="dataSource" ref="dataSource"></property>
+		<!--引入mybatis核心配置文件  -->
+		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
+		<!--加载SQL映射文件  -->
+		<property name="mapperLocations">
+			<list>
+				<value>classpath:ksd/smbms/user/mapper/**/*.xml</value>
+			</list>
+		</property>
+	</bean>
+	<!--mapper自动扫描器  -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="ksd.smbms.user.mapper"></property>
+	</bean>
+</beans>

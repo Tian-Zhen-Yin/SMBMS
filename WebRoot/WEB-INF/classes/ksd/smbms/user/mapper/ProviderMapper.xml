@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="ksd.smbms.user.mapper.ProviderMapper">
+  	<select id="getProviderList" parameterType="Provider" resultType="Provider">
+		select * from smbms_provider 
+		<where>
+			<if test="proName!=null and proName!=''">and proName like concat('%',#{proName},'%')</if>
+			<if test="proCode!=null and proCode!=''">and proCode like concat('%',#{proCode},'%')</if>
+	   </where>
+	   		limit #{currentPageNo},#{pageSize}
+	</select>
+  	<!-- 查看信息 -->
+  	<select id="findById" parameterType="int" resultType="Provider">
+		SELECT * FROM `smbms_provider` WHERE id=#{0};
+	</select>
+	<!-- 修改信息 -->
+	<select id="getProviderById" parameterType="String" resultType="Provider">
+		select * from smbms_provider where id=#{proid}
+	</select>
+	
+	<update id="modifyProvider" parameterType="Provider">
+		update smbms_provider 
+		<set>
+			<if test="proName!=null &amp;&amp; proName!=''">proName=#{proName},</if>
+			<if test="proDesc!=null &amp;&amp; proName!=''">proDesc=#{proDesc},</if>
+			<if test="proContact!=null &amp;&amp; proName!=''">proContact=#{proContact},</if>
+			<if test="proPhone!=null &amp;&amp; proName!=''">proPhone=#{proPhone},</if>
+			<if test="proAddress!=null &amp;&amp; proName!=''">proAddress=#{proAddress},</if>
+			<if test="proFax!=null &amp;&amp; proName!=''">proFax=#{proFax},</if>
+			<if test="modifyBy!=null &amp;&amp; proName!=''">modifyBy=#{modifyBy},</if>
+			<if test="modifyDate!=null &amp;&amp; proName!=''">modifyDate=#{modifyDate},</if>
+			<if test="proFax!=null &amp;&amp; proName!=''">proFax=#{proFax},</if>
+		</set>
+		where id = #{id}
+	</update>
+	<!-- 删除用户 -->
+	<delete id="deleteProvider">
+		DELETE FROM `smbms_provider` WHERE id=#{proid}
+	</delete>
+	<!-- 增加用户 -->
+	<insert id="addProvider" parameterType="Provider">
+		insert into smbms_provider (proCode,proName,proDesc,proContact,proPhone,
+		proAddress,proFax,createdBy,creationDate)
+		values(#{proCode},#{proName},#{proDesc},#{proContact},#{proPhone},
+		#{proAddress},#{proFax},#{createdBy},#{creationDate})
+	</insert>
+	<!-- 通过条件查询-用户表记录数 -->
+	<select id="getProviderCount" resultType="int">
+		SELECT COUNT(1) AS COUNT FROM `smbms_provider` 
+		<where>
+			<if test="proName!=null and proName!=''">and proName like concat('%',#{proName},'%')</if>
+			<if test="proCode!=null and proCode!=''">and proCode like concat('%',#{proCode},'%')</if>
+   		</where>
+	</select>
+	<select id="findAll" resultType="Provider" parameterType="Provider">
+		SELECT * FROM `smbms_provider` 
+	</select>
+	<select id="findCount" resultType="int">
+		SELECT COUNT(1) FROM `smbms_bill` WHERE   `providerId`=#{0}
+	</select>
+	<!-- 验证供应商编号唯一性 -->
+	<select id="checkProviderCode" parameterType="String" 
+	 resultType="String">
+			SELECT proCode FROM `smbms_provider` WHERE proCode=#{0}
+	</select>
+	<!-- 验证供应商名称唯一性 -->
+	<select id="checkProviderName" parameterType="String" 
+	 resultType="String">
+			SELECT proName FROM `smbms_provider` WHERE proName=#{0}
+	</select>
+  </mapper>

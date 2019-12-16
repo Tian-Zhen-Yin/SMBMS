@@ -1,0 +1,11 @@
+eclipse.preferences.version=1
+encoding//WebRoot/WEB-INF/jsp=UTF-8
+encoding//WebRoot/WEB-INF/jsp/index.jsp=UTF-8
+encoding//WebRoot/WEB-INF/jsp/login.jsp=UTF-8
+encoding//WebRoot/statics/css=UTF-8
+encoding//WebRoot/statics/css/style.css=UTF-8
+encoding//WebRoot/statics/js=UTF-8
+encoding//resources/log4j.properties=UTF-8
+encoding//src/ksd/smbms/user/controller/UserController.java=UTF-8
+encoding//src/ksd/smbms/user/service/impl/UserServiceImpl.java=UTF-8
+encoding/<project>=UTF-8
