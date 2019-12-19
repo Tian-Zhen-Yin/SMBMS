@@ -352,20 +352,20 @@ input[type='reset']:active, input[type='reset']:focus, .providerView a:hover, .p
     height: 190px;
     position: absolute;
     top: 200px;
-    left:500px;
-    background: #fff;
+    left:300px;
+    background: grey;
     border-radius: 4px;
 }
 .removerChid{
     margin: 4px;
-    border: 1px solid #ccc;
+
 }
 .removerChid h2{
     padding-left: 8px;
     font-size: 14px;
     line-height: 30px;
     margin: 4px 8px;
-    border-bottom: 1px solid #99cc33;
+    border-bottom: 1px solid #ffffff;
 }
 .removeMain{
     margin-top: 38px;
@@ -382,7 +382,7 @@ input[type='reset']:active, input[type='reset']:focus, .providerView a:hover, .p
     border: 1px solid #5e8809;
     margin-top: 30px;
     background: #99cc33;
-    color: #fff;
+    color: #ffffff;
 }
 .removeMain a:hover,.removeMain a:active{
     background: #679016;
@@ -408,19 +408,20 @@ input[type='reset']:active, input[type='reset']:focus, .providerView a:hover, .p
 }
 .page-num-ul a:hover,.page-num-ul .thisclass
 {
-	border:1px solid #c5063f;
-	background-color:#c5063f;
+	border:1px solid #0111;
+	background-color:#0111;
 	color:#FFF;
 	text-decoration:none;
 }
 .page-key
 {
 	width:50px;
+    color: gray;
 }
 .page-btn
 {
 	border:1px solid #b8b8b8;
-	background-color:#fff3f8;
+	background-color:#0111;
 	display:inline-block;
 	width:52px;
 	height:25px;

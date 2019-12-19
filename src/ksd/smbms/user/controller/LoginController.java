@@ -26,7 +26,7 @@ public class LoginController {
 		if (user!=null) {
 			session.setAttribute("userSession", user);
 			session.setAttribute("currentUser", user.getUserCode());
-			return "frame";
+			return "index";
 		}else {
 			return "error";
 		}
@@ -34,11 +34,16 @@ public class LoginController {
 	}
 	@RequestMapping("/tologin")
 	public String tologin() {
-		return "login";
+		return "login01";
 	}
 	@RequestMapping("/quit")
 	public String quit(HttpSession session) {
 		session.invalidate();
-		return "login";
+		return "login01";
+	}
+	@RequestMapping("/index")
+	public String home() {
+
+		return "index";
 	}
 }

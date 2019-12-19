@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="smbms01">
+    <output-path>E:/apache-tomcat-9.0.24/webapps</output-path>
+    <root id="archive" name="smbms01.war">
+      <element id="artifact" artifact-name="smbms" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="lib (2)" />
+          <element id="library" level="project" name="jstl" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

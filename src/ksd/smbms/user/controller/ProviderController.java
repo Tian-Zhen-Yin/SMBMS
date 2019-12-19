@@ -70,7 +70,7 @@ public class ProviderController {
 				model.addAttribute("totalPageCount", totalPageCount);
 				model.addAttribute("totalCount", totalCount);
 				model.addAttribute("currentPageNo", currentPageNo);
-				return "providerlist";
+				return "providerlist01";
 	}
 
 	/**
@@ -80,7 +80,7 @@ public class ProviderController {
 	public String findById(int uid,Model model){
 		Provider provider=providerService.findById(uid);
 		model.addAttribute("provider", provider);
-		return "providerview";
+		return "providerview01";
 	}
 	/**
 	 * 修改
@@ -89,7 +89,7 @@ public class ProviderController {
 	public String toModify (String proid, Model model) {
 		Provider provider = providerService.getProviderById(proid);
 		model.addAttribute("provider", provider);
-		return "providermodify";
+		return "providermodify01";
 	}
 	
 	@RequestMapping("/modify")
@@ -99,7 +99,7 @@ public class ProviderController {
 		if(num > 0){
 			return "redirect:providerList";
 		}
-		return "providermodify";
+		return "providermodify01";
 	}
 	/**
 	 * 删除用户
@@ -133,7 +133,7 @@ public class ProviderController {
 	
 	@RequestMapping(value="/toAdd")
 	public String toAdd(){
-		return "provideradd";
+		return "provideradd01";
 	}
 	/**
 	 * 执行增加

@@ -38,7 +38,31 @@ function changeDLGContent(contentStr){
 	var p = $(".removeMain").find("p");
 	p.html(contentStr);
 }
-
+function view(){
+	var obj = $(this);
+	window.location.href=path+"/bill/findById?billid="+ obj.attr("billid");
+}
+function modify(){
+	var obj = $(this);
+	if(obj.attr("billisp")==2){
+		alert("不能修改已付款订单！！");
+	}else{
+		window.location.href=path+
+			"/bill/toModify?method=modify&billid="+ obj.attr("billid");
+	}
+}
+function del() {
+	billObj = $(this);
+	if (billObj.attr("billisp") == 1) {
+		alert("不能删除未付款订单！！");
+	} else {
+		changeDLGContent("你确定要删除订单【" + billObj.attr("billcc") + "】吗？");
+		openYesOrNoDLG();
+	}
+}
+function add() {
+    window.location.href=path+ "/bill/toAdd";
+}
 $(function(){
 	$(".viewBill").on("click",function(){
 		//将被绑定的元素（a）转换成jquery对象，可以使用jquery方法
@@ -72,7 +96,7 @@ $(function(){
 		}
 	});
 	
-	
+
 
 	
 	/*$(".deleteBill").on("click",function(){

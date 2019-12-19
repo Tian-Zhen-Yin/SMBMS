@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@include file="common/head.jsp"%>
+<%@include file="common/newhead.jsp"%>
 
 <div class="right">
        <div class="location">
@@ -102,5 +102,5 @@
 </div>
 
 
-<%@include file="common/foot.jsp" %>
+<%@include file="common/newfoot.jsp" %>
 <script type="text/javascript" src="${pageContext.request.contextPath }/statics/js/billlist.js"></script>

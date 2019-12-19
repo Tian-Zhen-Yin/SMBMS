@@ -6,7 +6,7 @@
             <strong>你现在所在的位置是:</strong>
             <span>用户管理页面 >> 用户修改页面</span>
         </div>
-        <div class="providerAdd">
+        <div class="userAdd">
         <form id="userForm" name="userForm" method="post" action="${pageContext.request.contextPath }/user/modify">
 			<input type="hidden" name="method" value="modifyexe">
 			<input type="hidden" name="id" value="${user.id }"/>

@@ -62,7 +62,9 @@
             </form>
         </div>
 
-    </div>
+
+
+</div>
 </section>
 
 <%@include file="common/foot.jsp" %>

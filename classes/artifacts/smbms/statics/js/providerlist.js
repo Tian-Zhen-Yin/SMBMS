@@ -31,7 +31,9 @@ function deleteProvider(obj){
 		}
 	});
 }
-
+function add() {
+	window.location.href=path+"/provider/toAdd";
+}
 function openYesOrNoDLG(){
 	$('.zhezhao').css('display', 'block');
 	$('#removeProv').fadeIn();

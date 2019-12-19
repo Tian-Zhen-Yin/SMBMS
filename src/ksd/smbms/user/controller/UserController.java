@@ -85,14 +85,14 @@ public class UserController {
 		model.addAttribute("totalPageCount", totalPageCount);
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("currentPageNo", currentPageNo);
-		return "userlist";
+		return "userlist01";
 	}
 
 	@RequestMapping("/toAdd")
 	public String toAdd(Map<String,Object> map){
 		List<Role> rolelist=roleService.findAllRole();
 		map.put("roleList", rolelist);
-		return "useradd";
+		return "useradd01";
 	}
 	/**
 	 * rolelist
@@ -156,7 +156,7 @@ public class UserController {
 	public String findById(int uid,Model model){
 		User user=userService.findById(uid);
 		model.addAttribute("user", user);
-		return "userview";
+		return "userview01";
 	}
 	/**
 	 * 修改用户信息
@@ -165,7 +165,7 @@ public class UserController {
 	public String getUserById(@RequestParam("uid")  int uid, Model model) {
 		User user = userService.getUserById(uid);
 		model.addAttribute("user", user);
-		return "usermodify";
+		return "usermodify01";
 	}
 	@RequestMapping("/modify")
 	public String modifyUser(User user) {
@@ -180,7 +180,7 @@ public class UserController {
 	 */
 	@RequestMapping("/toPwdUpdate")
 	public String toPwdUpdate() {
-		return "pwdmodify";
+		return "pwmodify01";
 	}
 	
 	/*@RequestMapping("/tologin")

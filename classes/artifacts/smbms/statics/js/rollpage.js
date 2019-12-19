@@ -6,6 +6,7 @@ function page_nav(frm,num){
 function jump_to(frm,num){
     //alert(num);
 	//验证用户的输入
+	var num=num;
 	var regexp=/^[1-9]\d*$/;
 	var totalPageCount = document.getElementById("totalPageCount").value;
 	//alert(totalPageCount);

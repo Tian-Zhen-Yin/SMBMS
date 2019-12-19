@@ -99,7 +99,7 @@ public class BillController {
 		model.addAttribute("totalPageCount", totalPageCount);// 总页数
 		model.addAttribute("totalCount", totalCount); //查找到的总记录数
 		model.addAttribute("currentPageNo", currentpage);//当前页码
-		return "billlist";
+		return "billlist01";
 	}
 	 /*@ModelAttribute("providerList")
 		public List<Provider> getProviderList(Model model) {
@@ -113,7 +113,7 @@ public class BillController {
 		public String findById(String billid,Model model){
 			Bill bill=billService.findById(billid);
 			model.addAttribute("bill", bill);
-			return "billview";
+			return "billview01";
 		}
 		/**
 		 * 修改
@@ -123,7 +123,7 @@ public class BillController {
 			Bill bill = billService.findById(billid);
 			
 			model.addAttribute("bill", bill);
-			return "billmodify";
+			return "billmodify01";
 		}
 		
 		@RequestMapping("/modify")
@@ -133,7 +133,7 @@ public class BillController {
 			if(num > 0){
 				return "redirect:billList";
 			}
-			return "billmodify";
+			return "billmodify01";
 		}
 		/**
 		 * 删除
@@ -156,7 +156,7 @@ public class BillController {
 		}
 		@RequestMapping(value="/toAdd")
 		public String toAdd(){
-			return "billadd";
+			return "billadd01";
 		}
 		/**
 		 * 执行增加
@@ -187,7 +187,6 @@ public class BillController {
 					jsonString = JSON.toJSONString("noExist");
 				}
 			}
-			
 			return jsonString;
 		}
 }

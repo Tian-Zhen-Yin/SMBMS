@@ -18,7 +18,11 @@ function priceReg (value){
 	return value;
 }
 
-
+function add(){
+	if(confirm("是否确认提交数据")){
+		$("#billForm").submit();
+	}
+}
 $(function(){
 	billCode = $("#billCode");
 	productName = $("#productName");
